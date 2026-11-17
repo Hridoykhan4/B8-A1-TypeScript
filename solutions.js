@@ -1,0 +1,52 @@
+"use strict";
+function multiplyValue(value, multiplier = 2) {
+    return value * multiplier;
+}
+function processInput(value) {
+    if (typeof value === "string") {
+        return value.trim().toLowerCase();
+    }
+    else if (typeof value === "number") {
+        return value * 10;
+    }
+    else {
+        return value ? "Active" : "Inactive";
+    }
+}
+function formatCoordinate(location) {
+    const [latitude, longitude, locationName] = location;
+    return `Location: ${locationName} (${latitude}, ${longitude})`;
+}
+function concatenateArrays(...arrays) {
+    return arrays.flat();
+}
+function getPopularCourses(arr, minStudents) {
+    return [...arr].filter((course) => course.isPublished && course.students >= minStudents);
+}
+function pluckValues(items, key) {
+    return items.map(item => item[key]);
+}
+class Employee {
+    name;
+    baseSalary;
+    constructor(name, baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+    getDetails() {
+        return `Employee: ${this.name}, Base Salary: ${this.baseSalary}`;
+    }
+}
+class Manager extends Employee {
+    department;
+    constructor(name, baseSalary, department) {
+        super(name, baseSalary);
+        this.department = department;
+    }
+    getRoleInfo() {
+        return `Manager of ${this.department}: ${this.name}`;
+    }
+}
+const manager = new Manager("Alice", 50000, "Engineering");
+console.log(manager.getDetails());
+console.log(manager.getRoleInfo);
