@@ -12,10 +12,11 @@ function processInput(value: number | string | boolean): string | number {
   }
 }
 
-function formatCoordinate(location: readonly [number, number, string]) {
+function formatCoordinate(location: readonly [number, number, string]) : string {
   const [latitude, longitude, locationName] = location;
   return `Location: ${locationName} (${latitude}, ${longitude})`;
 }
+
 
 function concatenateArrays<T>(...arrays: T[][]): T[] {
   return arrays.flat();
@@ -27,7 +28,7 @@ interface Course {
   isPublished: boolean;
 }
 
-function getPopularCourses(arr: Course[], minStudents: number) {
+function getPopularCourses(arr: Course[], minStudents: number) : Course[] {
   return [...arr].filter(
     (course) => course.isPublished && course.students >= minStudents,
   );
@@ -62,8 +63,14 @@ class Manager extends Employee {
   }
 }
 
-const manager = new Manager("Alice", 50000, "Engineering");
-console.log(manager.getDetails());
-console.log(manager.getRoleInfo());
-
-
+async function validateAgeAsync(age: number): Promise<string> {
+  return new Promise((resolve, reject) => {
+    if (age >= 18) {
+      setTimeout(() => {
+        resolve("Access Granted");
+      }, 1000);
+    } else {
+      reject(new Error("Access Denied: Must be 18 or older"));
+    }
+  });
+}
